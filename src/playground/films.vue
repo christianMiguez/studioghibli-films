@@ -1,5 +1,23 @@
 <template>
-    
+<table class="table">
+  <thead>
+    <tr>
+      <th>Año</th>
+      <th>Título</th>
+      <th>Description</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr v-for="film in films">
+        <td>{{film.release_date}}</td>
+        <td>{{film.title}}</td>
+        <td>{{film.description}}</td>
+        <td>{{film.rt_score}}</td>
+    </tr>
+  </tbody>
+</table>
 </template>
 
 
@@ -12,14 +30,11 @@ import axios from 'axios'
 
            return {
                 films,
-                isPaginated: false,
-                isPaginationSimple: false,
-                defaultSortDirection: 'asc',
-                currentPage: 1,
-                perPage: 5
             }
         },
     methods: {
+        sort:function(s) {
+        }
       
     },
     created: function() {
@@ -27,7 +42,7 @@ import axios from 'axios'
         axios
           .get('https://ghibliapi.herokuapp.com/films')
           .then(function(respuesta) {
-            comp.data = respuesta.data // informacion actual del film. 
+            comp.films = respuesta.data // informacion actual del film. 
           }, function() {
           })
       }
