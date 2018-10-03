@@ -1,28 +1,33 @@
 <template>
-  <div id="app" class="container">
-
-    <NavBar />  
-    <Films  />
-
+  <div id="app">
+    <Header />
+    <NavBar  />
+    <router-view />
   </div>
-
 </template>
 
 <script>
-//import RecursoRemoto from '@/playground/recursoremoto.vue'
-import Films from '@/playground/films.vue'
-import NavBar from '@/playground/navbar.vue'
-
-
+import NavBar from "@/components/NavBar.vue";
+import Header from "@/components/Header.vue";
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    
-    Films,
+    Header,
     NavBar
   }
 }
 </script>
 
 <style>
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100% !important;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+  text-align: center;
+  color: #2c3e50;
+}
 </style>
