@@ -12,7 +12,6 @@ import APIs from "@/components/APIs.vue";
 export default {
   name: 'App',
   components: {
-    Header,
     NavBar,
     APIs
   }
