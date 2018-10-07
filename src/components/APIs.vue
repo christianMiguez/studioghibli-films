@@ -1,15 +1,14 @@
 <template>
    <div>
-     <div class="card text-left" style="width: 100%">
-  <div class="card-body">
-    <h2 class="card-title">Título:{{films.title}}</h2>
-    <h2 class="card-title">Director:{{films.director}}</h2>
-    <h2 class="card-title">Año:{{films.release_date}}</h2>
-    <h2 class="card-title">Rating:{{films.rt_score}}</h2> 
-
-  </div>
-</div>
-    </div> 
+        <div v-for="film in films" :key="film.id">
+            <b-card>
+                <h2 class="card-title">Título:{{film.title}}</h2>
+                <h2 class="card-title">Director:{{film.director}}</h2>
+                <h2 class="card-title">Año:{{film.release_date}}</h2>
+                <h2 class="card-title">Rating:{{film.rt_score}}</h2> 
+            </b-card>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -17,14 +16,14 @@ import axios from 'axios'
 export default {
  data() {
     return {
-    films:null,
+    films: [],
  }},
 created() {
     var comp = this
     var apiUrl= 'https://ghibliapi.herokuapp.com/films'
     var apiPromise = axios.get('https://ghibliapi.herokuapp.com/films')
     .then(function(res){
-        comp.films = res.data[4]
+        comp.films = res.data
         }, function(error){
             console.log(error)
             })
