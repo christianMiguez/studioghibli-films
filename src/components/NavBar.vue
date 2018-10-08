@@ -6,19 +6,31 @@
 
 
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
-  <b-navbar-brand href="#">Estudio Ghibli</b-navbar-brand>
-
+    <div class="miya">
+  <b-navbar-brand href="#/"><h2>Miyazaki Wiki</h2></b-navbar-brand>
+    </div>
   <b-collapse is-nav id="nav_collapse">
 
 <div>
   <b-dropdown id="ddown1" text="Peliculas" class="m-md-2">
-    <b-dropdown-item>First Action</b-dropdown-item>
-    <b-dropdown-item>Second Action</b-dropdown-item>
-    <b-dropdown-item>Third Action</b-dropdown-item>
-    <b-dropdown-divider></b-dropdown-divider>
-    <b-dropdown-item>Something else here...</b-dropdown-item>
-    <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+    <delay :wait="2000">
+      <b-dropdown-item v-for="film in films" v-bind:key="film.id" :value="film.title" >a{{film.title}}</b-dropdown-item>
+    </delay>
+  </b-dropdown>
+  <b-dropdown id="ddown1" text="Characters" class="m-md-2">
+    <delay :wait="2000">
+      <b-dropdown-item v-for="film in films" v-bind:key="film.id" :value="film.title" >a{{film.title}}</b-dropdown-item>
+    </delay>
+  </b-dropdown>
+  <b-dropdown id="ddown1" text="Locations" class="m-md-2">
+    <delay :wait="2000">
+      <b-dropdown-item v-for="film in films" v-bind:key="film.id" :value="film.title" >a{{film.title}}</b-dropdown-item>
+    </delay>
+  </b-dropdown>
+   <b-dropdown id="ddown1" text="Directors" class="m-md-2">
+    <delay :wait="2000">
+      <b-dropdown-item v-for="film in films" v-bind:key="film.id" :value="film.title" >a{{film.title}}</b-dropdown-item>
+    </delay>
   </b-dropdown>
 </div>
     <!-- Right aligned nav items -->
@@ -53,13 +65,19 @@
 <script>
 export default {
     name: "NavBar",
-    props: {
+    data () {
+      return{
+        algo: []
+      }
 
-    }
+    },
+    components: {
+    },
+    props: ["films"]
 }
 </script>
 
-<style>
+<style >
 .logo {
     width: 50px;
     height: 50px;
@@ -68,5 +86,8 @@ export default {
     width: 100%;
     background-color: darkolivegreen;
 
+}
+.miya {
+  margin-left: 15px;
 }
 </style>

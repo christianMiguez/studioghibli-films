@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <Header />
-    <NavBar  />
     <router-view />
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import Header from "@/components/Header.vue";
 export default {
   name: 'App',
   components: {
-    Header,
-    NavBar
+    NavBar,
   }
 }
 </script>
@@ -22,7 +18,10 @@ export default {
 body {
   margin: 0px;
   padding: 0px;
-  height: 100% !important;
+  background-image: url("./assets/ghibli.jpg");
+      background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
