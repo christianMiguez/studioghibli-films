@@ -1,6 +1,6 @@
 <template>
-   <div>
-        <NavBar  films="films" />
+   <div class="bodyDiv">
+        <delay :wait="1200">
         <div class="listas">
             <div class="lista">
             <b-list-group>
@@ -43,26 +43,22 @@
             </b-list-group>
             </div>
         </div>
+         </delay>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-import NavBar from "@/components/NavBar.vue";
 export default {
     data() {
         return {
         films: [],
-        people: []
-        }
-    },
-    computed: {
-        directors () {
-            return uniq(this.films.map(p => p.director))
+        people: [],
+        locations: [],
+        directors: []
         }
     },
     components: {
-        NavBar
     },
     mounted () {
         var comp = this
