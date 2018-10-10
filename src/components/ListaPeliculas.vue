@@ -2,13 +2,13 @@
     <div class="container1">
         <div class="col-sm-12">
             <div>
-                <h1>Film list</h1>
+                <h1>Films</h1>
                     <b-table striped hover :items="films" :fields="fields" v-if="done != false">
                         <template slot="title" slot-scope="row">
                         <router-link :to="{ name: 'detalle', params: { idFilm: row.item.id } }" >{{ row.value }}</router-link>
                         </template>
                     </b-table>
-                <div v-else>Loading...</div>
+                <div class="loadingElse" v-else>Loading...</div>
             </div>
         </div>
     </div>
@@ -62,19 +62,29 @@ import axios from 'axios'
 </script>
 
 <style scoped>
-table {
-    width: 100%
+h1 {
+    width: 100%;
+    padding-bottom:40px;
+    padding-top:10px;
+    font-weight:bold
 }
 .container1 {
-
     width: 1600px;
     display: flex;
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
-    justify-content: center;
     background-color: white;
     margin-top: 10px;
     margin-bottom: 10px;
+
+}
+table {
+    width: 100%
+}
+.loadingElse {
+    width: 100%;
+    text-align: center;
+    font-weight:bold;
 }
 </style>
