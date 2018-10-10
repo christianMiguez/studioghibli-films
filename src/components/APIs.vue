@@ -1,7 +1,8 @@
 <template>
    <div class="bodyDiv">
-        <delay :wait="1200">
+
         <div class="listas">
+
             <div class="lista">
             <b-list-group>
                 <h2>FILMS</h2>
@@ -43,7 +44,6 @@
             </b-list-group>
             </div>
         </div>
-         </delay>
     </div>
 </template>
 
@@ -92,7 +92,7 @@ export default {
 
 <style scoped>
 .listas {
-    width: min-content;
+    width: 1600px;
     display: flex;
     flex-direction: row;
     margin-left: auto;
@@ -101,10 +101,10 @@ export default {
     background-color: white;
     margin-top: 10px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 .lista {
     width: 400px;
-
 }
 </style>
 

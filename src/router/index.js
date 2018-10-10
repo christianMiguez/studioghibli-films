@@ -17,8 +17,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Mainpage',
-      component: APIs
+      name: 'Films',
+      component: ListaPeliculas
     },
     {
       path: '/films',
@@ -30,6 +30,5 @@ export default new Router({
       name: 'detalle',
       component: DetallePelicula
     }
-
   ]
 })

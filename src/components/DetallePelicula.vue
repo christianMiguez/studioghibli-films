@@ -1,7 +1,9 @@
 <template>
     <div class="container2">
         <div class="row textoDetalle" v-if="film !== null">
-            <router-link to="/">Back to Home</router-link>
+            <div>
+                <b-button href="/films">Back</b-button>
+            </div>
             <h1>{{film.title}} </h1>
             <div>
                 <h3>Description</h3>

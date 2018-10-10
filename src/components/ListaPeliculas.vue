@@ -2,13 +2,13 @@
     <div class="container1">
         <div class="col-sm-12">
             <div>
-                <h1>Lista de peliculas</h1>
+                <h1>List of films</h1>
                     <b-table striped hover :items="films" :fields="fields" v-if="done != false">
                         <template slot="title" slot-scope="row">
                         <router-link :to="{ name: 'detalle', params: { idFilm: row.item.id } }" >{{ row.value }}</router-link>
                         </template>
                     </b-table>
-                <div v-else>Cargando...</div>
+                <div v-else>Loading...</div>
             </div>
         </div>
     </div>
