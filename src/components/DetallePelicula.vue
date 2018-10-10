@@ -1,6 +1,6 @@
 <template>
     <div class="container2">
-        <div class="row textoDetalle" v-if="film !== null">
+        <div class="row textoDetalle" v-if="film">
             <div>
                 <b-button href="/films">Back</b-button>
             </div>
@@ -17,9 +17,11 @@
                 <h3>Rating</h3>
                 <p>{{film.rt_score}}</p>
                 <h3>Characters</h3>
-                <div v-for="people in people" :key="people.id">
-                    <div v-if="people.films[0].substr(38, 36) == film.id">
-                        <p>{{people.name}}</p>  
+                <div class="peopleCards">
+                    <div  v-for="people in people" :key="people.id">
+                        <div class="peopleCard" v-if="people.films[0].substr(38, 36) == film.id">
+                            <Cards v-bind:people="people" />
+                        </div>
                     </div>
                 </div>
                 <h3>Locations</h3>
@@ -30,12 +32,13 @@
                 </div>
             </div>
             <hr>
-            <Cards />
+
             <pre>
             </pre>
 
             
         </div>
+        <div class="loadingElse" v-else>Loading...</div>
     </div>
 </template>
 
@@ -62,7 +65,6 @@ import Cards from "@/components/Cards.vue";
             axios.get('https://ghibliapi.herokuapp.com/films/'+idFilm)
             .then(function(res){
                 comp.film = res.data;
-                comp.people = res.data.people;
             }, 
             function(error){
                 console.log(error)
@@ -90,7 +92,12 @@ import Cards from "@/components/Cards.vue";
 
 <style scoped>
 h1 {
-    width: 100%;padding-bottom:40px;padding-top:10px;font-weight:bold
+    width: 100%;
+    padding-bottom:40px;
+    padding-top:10px;
+    font-weight:bold;
+    text-align: center
+
 }
 .container2 {
     width: 1600px;
@@ -106,5 +113,20 @@ h1 {
 .textoDetalle {
         text-align: left;
         margin: 15px;
+}
+.peopleCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+}
+.peopleCard {
+    margin-left: 10px;
+    width: min-content;
+}
+.loadingElse {
+    width: 100%;
+    text-align: center;
+    font-weight:bold;
 }
 </style>
