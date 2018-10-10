@@ -1,7 +1,8 @@
 <template>
-   <div>
-        <NavBar  films="films" />
+   <div class="bodyDiv">
+
         <div class="listas">
+
             <div class="lista">
             <b-list-group>
                 <h2>FILMS</h2>
@@ -48,21 +49,16 @@
 
 <script>
 import axios from 'axios'
-import NavBar from "@/components/NavBar.vue";
 export default {
     data() {
         return {
         films: [],
-        people: []
-        }
-    },
-    computed: {
-        directors () {
-            return uniq(this.films.map(p => p.director))
+        people: [],
+        locations: [],
+        directors: []
         }
     },
     components: {
-        NavBar
     },
     mounted () {
         var comp = this
@@ -96,7 +92,7 @@ export default {
 
 <style scoped>
 .listas {
-    width: min-content;
+    width: 1600px;
     display: flex;
     flex-direction: row;
     margin-left: auto;
@@ -105,10 +101,10 @@ export default {
     background-color: white;
     margin-top: 10px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 .lista {
     width: 400px;
-
 }
 </style>
 

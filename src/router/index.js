@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import APIs from "@/components/APIs.vue"
-import film from "@/components/film.vue"
+import ListaPeliculas from "@/components/ListaPeliculas.vue"
+import DetallePelicula from "@/components/DetallePelicula.vue"
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -16,18 +17,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Mainpage',
-      component: APIs
+      name: 'Films',
+      component: ListaPeliculas
     },
     {
-      path: '/:filmPath',
-      name: 'filmName',
-      component: film
+      path: '/films',
+      name: 'lista',
+      component: ListaPeliculas
     },
     {
-      path: '/1',
-      name: '1',
-      component: APIs
-    },
+      path: '/:idFilm',
+      name: 'detalle',
+      component: DetallePelicula
+    }
   ]
 })
