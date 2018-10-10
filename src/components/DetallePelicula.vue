@@ -16,11 +16,22 @@
                 <p>{{film.release_date}}</p>
                 <h3>Rating</h3>
                 <p>{{film.rt_score}}</p>
+                <h3>Characters</h3>
+                <div v-for="people in people" :key="people.id">
+                    <div v-if="people.films[0].substr(38, 36) == film.id">
+                        <p>{{people.name}}</p>  
+                    </div>
+                </div>
+                <h3>Locations</h3>
+                <div v-for="location in locations" :key="location.id">
+                    <div v-if="location.films[0].substr(38, 36) == film.id">
+                        <p>{{location.name}}</p>  
+                    </div>
+                </div>
             </div>
             <hr>
             <Cards />
             <pre>
-            {{people}}
             </pre>
 
             
@@ -36,7 +47,8 @@ import Cards from "@/components/Cards.vue";
         data () {
             return {
                 film: null,
-                people: null
+                people: null,
+                locations: null,
             }
         },
         components: {
@@ -55,6 +67,22 @@ import Cards from "@/components/Cards.vue";
             function(error){
                 console.log(error)
             });
+            var apiUrl= 'https://ghibliapi.herokuapp.com/people/'
+            var apiPromise = axios.get('https://ghibliapi.herokuapp.com/people/')
+            .then(function(res){
+                comp.people = res.data
+            }, 
+            function(error){
+                console.log(error)
+            })
+            var apiUrl= 'https://ghibliapi.herokuapp.com/locations/'
+            var apiPromise = axios.get('https://ghibliapi.herokuapp.com/locations/')
+            .then(function(res){
+                comp.locations = res.data
+            }, 
+            function(error){
+                console.log(error)
+            })    
             
         }
     }
