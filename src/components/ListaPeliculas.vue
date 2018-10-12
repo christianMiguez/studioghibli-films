@@ -3,9 +3,16 @@
         <div class="col-sm-12">
             <div>
                 <h1>Films</h1>
-                    <b-table striped hover :items="films" :fields="fields" v-if="done != false">
+                    <b-table striped hover :items="films" :fields="fields" v-if="done != false" :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" >
                         <template slot="title" slot-scope="row">
-                        <router-link :to="{ name: 'detalle', params: { idFilm: row.item.id } }" >{{ row.value }}</router-link>
+                            <router-link :to="{ name: 'detalle', params: { idFilm: row.item.id } }" style="color:red" >{{ row.value }}</router-link>
+                        </template>
+                        <template slot="rt_score" slot-scope="row" >
+                        <div v-b-tooltip.hover :title="row.value">                
+                            <div class="iconsFa">
+                                 <font-awesome-icon icon="star" v-for="(item, index) in parseInt(getStars(row.value))" :key="index" />
+                            </div>
+                        </div>
                         </template>
                     </b-table>
                 <div class="loadingElse" v-else>Loading...</div>
@@ -13,7 +20,6 @@
         </div>
     </div>
 </template>
-
 <script>
 
 import axios from 'axios'
@@ -30,7 +36,7 @@ import axios from 'axios'
                     key: 'release_date',
                     label: 'Year',
                     sortable: true,
-                    sortDirection: 'desc'
+                    sortDirection: 'DESC'
                     },
                      {
                     key: 'director',
@@ -43,7 +49,9 @@ import axios from 'axios'
                     }
                 ],
             films: [],
-            done: false
+            done: false,
+            sortBy: 'release_date',
+            sortDesc: true
             }
         },
         mounted () {
@@ -57,6 +65,18 @@ import axios from 'axios'
             function(error){
                 console.log(error)
             })
+        },
+        methods: {
+            getStars(ratingStars) {
+                //return this.ratingStars = (parseInt(ratingStars) / 20);
+                var ratingStars = parseInt(ratingStars);
+                return new String(ratingStars / 20)
+            }
+        },
+        computed: {
+            sortedArray(){
+                return this.films.sort((a, b) => a.release_date - b.release_date );
+            }
         }
     }
 </script>
@@ -82,6 +102,7 @@ h1 {
 table {
     width: 100%
 }
+.iconsFa {color:orange}
 .loadingElse {
     width: 100%;
     text-align: center;

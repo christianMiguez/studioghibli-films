@@ -1,8 +1,8 @@
 <template>
     <div class="container2">
         <div class="row textoDetalle" v-if="film">
-            <div>
-                <b-button href="/films">Back</b-button>
+            <div>    
+                <router-link to="/" tag="button" class="btn"><font-awesome-icon icon="home" /> Home</router-link>
             </div>
             <h1>{{film.title}} </h1>
             <div>
@@ -17,31 +17,23 @@
                 <h3>Rating</h3>
                 <p>{{film.rt_score}}</p>
                 <h3>Characters</h3>
-                <div class="peopleCards">
-                    <div  v-for="people in people" :key="people.id">
-                        <div class="peopleCard" v-if="people.films[0].substr(38, 36) == film.id">
-                            <Cards v-bind:people="people" />
-                        </div>
-                    </div>
-                </div>
-                <h3>Locations</h3>
-                <div v-for="location in locations" :key="location.id">
-                    <div v-if="location.films[0].substr(38, 36) == film.id">
-                        <p>{{location.name}}</p>  
-                    </div>
-                </div>
-            </div>
-            <hr>
-
-            <pre>
-            </pre>
-
-            
+                    <div v-if="film.people[0].substr(38, 36) != '/' ">
+                        <div class="peopleCards">
+                            <div v-for="people in people" :key="people.id">
+                                <div class="peopleCard" v-if="people.films[0].substr(38, 36) == film.id">
+                                    <Cards v-bind:people="people" />
+                                </div>
+                            </div>
+                        </div>                  
+                    </div>  
+                    <div v-else>
+                            There is no characters information for this movie
+                    </div> 
+            </div>        
         </div>
         <div class="loadingElse" v-else>Loading...</div>
     </div>
 </template>
-
 <script>
 import axios from 'axios'
 import Cards from "@/components/Cards.vue";
@@ -76,16 +68,7 @@ import Cards from "@/components/Cards.vue";
             }, 
             function(error){
                 console.log(error)
-            })
-            var apiUrl= 'https://ghibliapi.herokuapp.com/locations/'
-            var apiPromise = axios.get('https://ghibliapi.herokuapp.com/locations/')
-            .then(function(res){
-                comp.locations = res.data
-            }, 
-            function(error){
-                console.log(error)
-            })    
-            
+            })  
         }
     }
 </script>

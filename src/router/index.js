@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
-import APIs from "@/components/APIs.vue"
 import ListaPeliculas from "@/components/ListaPeliculas.vue"
 import DetallePelicula from "@/components/DetallePelicula.vue"
 
